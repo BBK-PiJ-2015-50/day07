@@ -18,6 +18,11 @@ public class Patient {
         return patientCount;
     }
 
+    // For updating patientCount when deleting first patient in list
+    public static void decPatientCount() {
+        patientCount--;
+    }
+
     public Patient getNextPatient() {
         return nextPatient;
     }
@@ -47,13 +52,6 @@ public class Patient {
     public String toString() {
         return "Name: " + name + "\tAge: " + age + "\t\tIllness: " + illness;
     }
-
-    /*public void printList() {
-        System.out.println(toString());
-        if (this.nextPatient != null) {
-            this.nextPatient.printList();
-        }
-    }*/
 
     public void listLength() {
         length++;

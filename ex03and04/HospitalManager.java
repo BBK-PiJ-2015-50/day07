@@ -28,39 +28,82 @@ public class HospitalManager {
 		Patient p10 = new Patient("Susan", 40, "Mumps");
 		patientListStart.addPatient(p10);
 		
-		printList();
-		//patientListStart.listLength();
-		System.out.println("Number of patients: " + Patient.getPatientCount());
-		patientListStart.iterativeLength();
+		System.out.println("=====================================================");
+		System.out.println("\t\tSINGLY-LINKED LIST");
+		printVarious();
 
-		// Delete a couple of patients
+		System.out.println("Delete a couple of patients");
 		patientListStart.deletePatient(p8);
 		patientListStart.deletePatient(p3);
-		printList();
-		//patientListStart.listLength();
-		//System.out.println(Patient.getPatientCount());
-		patientListStart.iterativeLength();
-		// Delete 1st patient by changing patientListStart to p2
-		patientListStart = p2;
-		printList();
-		//patientListStart.listLength();
-		//System.out.println(Patient.getPatientCount());
-		patientListStart.iterativeLength();
-		// Delete last patient in list
+		printVarious();
+
+		System.out.println("Delete 1st patient");
+		deleteFirstPatient();
+		printVarious();
+
+		System.out.println("Delete last patient in list");
 		patientListStart.deletePatient(p10);
-		printList();
-		//patientListStart.listLength();
-		//System.out.println(Patient.getPatientCount());
-		patientListStart.iterativeLength();
-		
+		printVarious();
+
+		System.out.println("Delete 5 patients");
+		patientListStart.deletePatient(p4);
+		patientListStart.deletePatient(p5);
+		patientListStart.deletePatient(p6);
+		patientListStart.deletePatient(p7);
+		patientListStart.deletePatient(p9);
+		printVarious();
+
+		System.out.println("Delete 1st patient");
+		deleteFirstPatient();
+		printVarious();
 	}
 
 	private void printList() {
+		if (patientListStart == null) {
+			System.out.println("List is empty");
+			return;
+		}
 		Patient patientToPrint = patientListStart;
-		do {
+		while (patientToPrint != null) {
 			System.out.println(patientToPrint);
 			patientToPrint = patientToPrint.getNextPatient();
-		} while (patientToPrint != null);
+		}
 	}
-	
+
+	private void printVarious() {
+		System.out.println("=====================================================");
+		printList();
+		System.out.println("=====================================================");
+		System.out.println("List length (patientCount):\t" + Patient.getPatientCount());
+		System.out.println("List length (recursive method):\t" + listLengthRecursive(patientListStart));
+		System.out.println("List length (iterative method):\t" + listLengthIterative());
+		System.out.println("=====================================================");
+	}
+
+	private void deleteFirstPatient() {
+		patientListStart = patientListStart.getNextPatient();
+		Patient.decPatientCount();
+	}
+
+	public int listLengthRecursive(Patient p) {
+		if (p == null) {
+			return 0;
+		}
+		int length = 1;
+        if (p.getNextPatient() == null) {
+        	return length;
+        } else {
+        	return (1 + listLengthRecursive(p.getNextPatient()));
+        }
+    }
+
+    public int listLengthIterative() {
+    	int length = 0;
+        Patient temp = patientListStart;
+        while (temp != null) {
+        	length++;
+            temp = temp.getNextPatient();
+        }
+    	return length;
+    }
 }

@@ -32,9 +32,8 @@ public class HospitalManager {
 		System.out.println("\t\tSINGLY-LINKED LIST");
 		printVarious();
 
-		System.out.println("Delete a couple of patients");
-		patientListStart.deletePatient(p8);
-		patientListStart.deletePatient(p3);
+		patientListStart.deletePatient("Derek");
+		patientListStart.deletePatient("Simon");
 		printVarious();
 
 		System.out.println("Delete 1st patient");
@@ -42,15 +41,14 @@ public class HospitalManager {
 		printVarious();
 
 		System.out.println("Delete last patient in list");
-		patientListStart.deletePatient(p10);
+		patientListStart.deletePatient("Susan");
 		printVarious();
 
-		System.out.println("Delete 5 patients");
-		patientListStart.deletePatient(p4);
-		patientListStart.deletePatient(p5);
-		patientListStart.deletePatient(p6);
-		patientListStart.deletePatient(p7);
-		patientListStart.deletePatient(p9);
+		patientListStart.deletePatient("Bill");
+		patientListStart.deletePatient("Luke");
+		patientListStart.deletePatient("John");
+		patientListStart.deletePatient("Mark");
+		patientListStart.deletePatient("Nigel");
 		printVarious();
 
 		System.out.println("Delete 1st patient");
@@ -82,6 +80,7 @@ public class HospitalManager {
 
 	private void deleteFirstPatient() {
 		patientListStart = patientListStart.getNextPatient();
+		System.out.println("Deleted patientListStart");
 		Patient.decPatientCount();
 	}
 

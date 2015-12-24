@@ -5,7 +5,6 @@ public class Patient {
     private String illness;
     private Patient nextPatient;
     private static int patientCount = 1;
-    private int length;
 
     public Patient(String name, int age, String illness) {
         this.name = name;
@@ -27,7 +26,6 @@ public class Patient {
         return nextPatient;
     }
 
-
     public void addPatient(Patient newPatient) {
         if (this.nextPatient == null) {
             this.nextPatient = newPatient;
@@ -37,40 +35,20 @@ public class Patient {
         }
     }
 
-    public boolean deletePatient(Patient patient) {
+    public boolean deletePatient(String name) {
         if (this.nextPatient == null) {
             return false;
-        } else if (this.nextPatient.name.equals(patient.name)) {
+        } else if (this.nextPatient.name.equals(name)) {
             this.nextPatient = nextPatient.nextPatient;
+            System.out.println("Deleted " + name);
             patientCount--;
             return true;
         } else {
-            return this.nextPatient.deletePatient(patient);
+            return this.nextPatient.deletePatient(name);
         }
     }
 
     public String toString() {
         return "Name: " + name + "\tAge: " + age + "\t\tIllness: " + illness;
-    }
-
-    public void listLength() {
-        length++;
-        if (this.nextPatient != null) {
-            this.nextPatient.listLength();
-        } else {
-            System.out.println("\n(recursively) The length of the list is " + length);
-            length = 0;
-        }
-    }
-
-    public void iterativeLength() {
-        Patient temp = this;
-        length = 1;
-        do {
-            temp = temp.nextPatient;
-            length++;
-        } while (temp.nextPatient != null);
-        System.out.println("(iteratively) The length of the list is " + (length));
-        length = 0;
     }
 }

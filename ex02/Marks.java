@@ -1,32 +1,36 @@
 public class Marks {
-	
+	private final static int STOP = -1;
+	private final static int MIN = 0;
+	private final static int MAX = 100;
+	private final static int PASS = 50;
+	private final static int DISTINCTION = 70;
 
+	int studentCount = 0;
+	int distinctionCount = 0;
+	int passCount = 0;
+	int failCount = 0;
+	int invalidCount = -1;
+	int mark;
+	
 	public static void main(String[] args) {
 		Marks count = new Marks();
 		count.markCounter();
 	}
 
 	public void markCounter(){
-		int studentCount = 0;
-		int distinctionCount = 0;
-		int passCount = 0;
-		int failCount = 0;
-		int invalidCount = -1;
-		int mark;
-		int count;
 		System.out.println("Enter marks <0-100> one per line");
 		System.out.println("Enter -1 when finished");
 		do {
 			System.out.print("Enter a mark: ");
 			mark = Integer.parseInt(System.console().readLine());
 			studentCount++;
-			if (mark >= 70 && mark <= 100) {
+			if (mark >= DISTINCTION && mark <= MAX) {
 				distinctionCount++;
-			} else if (mark >= 50 && mark <= 69) {
+			} else if (mark >= PASS && mark < DISTINCTION) {
 				passCount++;
-			} else if (mark >= 0 && mark <= 49) {
+			} else if (mark >= MIN && mark < PASS) {
 				failCount++;
-			} else if (mark >= 100 || mark < 0) {
+			} else if (mark > MAX || mark < MIN) {
 				studentCount--;
 				invalidCount++;
 			}

@@ -33,8 +33,13 @@ public class Patient {
         }
     }
 
+    public String toString() {
+        return "Name: " + name + "\tAge: " + age + "\t\tIllness: " + illness;
+    }
+
     public void printList() {
-        System.out.println(this.name + "\t" + this.age + "\t" + this.illness);
+        //System.out.println(this.name + "\t" + this.age + "\t" + this.illness);
+        System.out.println(toString());
         if (this.nextPatient != null) {
             this.nextPatient.printList();
         }

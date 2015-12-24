@@ -1,3 +1,5 @@
+// Doubly-linked list
+
 public class HospitalManager {
     private Patient patientListStart = null;
 

@@ -28,30 +28,39 @@ public class HospitalManager {
 		Patient p10 = new Patient("Susan", 40, "Mumps");
 		patientListStart.addPatient(p10);
 		
-		patientListStart.printList();
-		patientListStart.listLength();
+		printList();
+		//patientListStart.listLength();
+		System.out.println("Number of patients: " + Patient.getPatientCount());
 		patientListStart.iterativeLength();
 
 		// Delete a couple of patients
 		patientListStart.deletePatient(p8);
 		patientListStart.deletePatient(p3);
-		System.out.println("");
-		patientListStart.printList();
-		patientListStart.listLength();
+		printList();
+		//patientListStart.listLength();
+		//System.out.println(Patient.getPatientCount());
 		patientListStart.iterativeLength();
 		// Delete 1st patient by changing patientListStart to p2
 		patientListStart = p2;
-		System.out.println("");
-		patientListStart.printList();
-		patientListStart.listLength();
+		printList();
+		//patientListStart.listLength();
+		//System.out.println(Patient.getPatientCount());
 		patientListStart.iterativeLength();
 		// Delete last patient in list
 		patientListStart.deletePatient(p10);
-		System.out.println("");
-		patientListStart.printList();
-		patientListStart.listLength();
+		printList();
+		//patientListStart.listLength();
+		//System.out.println(Patient.getPatientCount());
 		patientListStart.iterativeLength();
 		
+	}
+
+	private void printList() {
+		Patient patientToPrint = patientListStart;
+		do {
+			System.out.println(patientToPrint);
+			patientToPrint = patientToPrint.getNextPatient();
+		} while (patientToPrint != null);
 	}
 	
 }

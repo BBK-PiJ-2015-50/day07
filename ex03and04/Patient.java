@@ -4,8 +4,8 @@ public class Patient {
     private int age;
     private String illness;
     private Patient nextPatient;
-    private static int length = 0;
-    private Patient temp;
+    private static int patientCount = 1;
+    private int length;
 
     public Patient(String name, int age, String illness) {
         this.name = name;
@@ -14,9 +14,19 @@ public class Patient {
         this.nextPatient = null;
     }
 
+    public static int getPatientCount() {
+        return patientCount;
+    }
+
+    public Patient getNextPatient() {
+        return nextPatient;
+    }
+
+
     public void addPatient(Patient newPatient) {
         if (this.nextPatient == null) {
             this.nextPatient = newPatient;
+            patientCount++;
         } else {
             this.nextPatient.addPatient(newPatient);
         }
@@ -27,6 +37,7 @@ public class Patient {
             return false;
         } else if (this.nextPatient.name.equals(patient.name)) {
             this.nextPatient = nextPatient.nextPatient;
+            patientCount--;
             return true;
         } else {
             return this.nextPatient.deletePatient(patient);
@@ -37,13 +48,12 @@ public class Patient {
         return "Name: " + name + "\tAge: " + age + "\t\tIllness: " + illness;
     }
 
-    public void printList() {
-        //System.out.println(this.name + "\t" + this.age + "\t" + this.illness);
+    /*public void printList() {
         System.out.println(toString());
         if (this.nextPatient != null) {
             this.nextPatient.printList();
         }
-    }
+    }*/
 
     public void listLength() {
         length++;

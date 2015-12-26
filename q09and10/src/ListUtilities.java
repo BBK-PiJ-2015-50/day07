@@ -20,6 +20,10 @@ public class ListUtilities {
         return start;
     }
 
+    public static void addValueToSortedList(Node existingList, int newValue) {
+        existingList.addNodeToSortedList(new Node(newValue));
+    }
+
     public static class Node {
         int value;
         Node next;

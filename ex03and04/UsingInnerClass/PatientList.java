@@ -7,6 +7,7 @@ public class PatientList {
 
 	public void addPatient(String name, int age, String illness) {
 	    Patient newPatient = new Patient(name, age, illness);
+	    // If list is empty head (patientListStart) will point to new patient
 	    if (patientListStart == null) {
 	    	patientListStart = newPatient;
 	    } else {
@@ -20,22 +21,31 @@ public class PatientList {
 	}
 
 	public boolean deletePatient(String name) {
+		// If list is empty 
 		if (patientListStart == null) {
 			return false;
 		}
+		// If name matches 1st patient 
 	    if (patientListStart.name.equals(name)) {
 	    	patientListStart = patientListStart.next;
 			Patient.patientCount--;
 	        return true;
 		}
+		// Check name against each patient in list
 		Patient temp = patientListStart;
-		while (!temp.next.name.equals(name)) {
+		while ((!temp.next.name.equals(name)) && (temp.next.next != null)) {
 			temp = temp.next;
 		}
-		temp.next = temp.next.next;
-		Patient.patientCount--;
-		return (temp != null) ? true : false;
-	    }
+		if (temp.next.name.equals(name)) {
+			System.out.println("deleted: " + temp.next.name);
+			temp.next = temp.next.next;
+			Patient.patientCount--;
+			return true;
+		} else {
+			System.out.println(name + " was not found in the list");
+			return false;
+		}	
+	}
 
 	public int listLengthRecursive(Patient p) {
 		if (p == null) {
@@ -72,6 +82,7 @@ public class PatientList {
 		return str + patientToPrint;
         }
 
+    // Convenient printout for testing
 	public void printListAndCount(PatientList list) {
 		System.out.println("=====================================================");
 		System.out.println(list);
@@ -86,7 +97,7 @@ public class PatientList {
 	    private String name;
 	    private int age;
 	    private String illness;
-	    private Patient next;
+	    private Patient next = null;
 	    private static int patientCount = 0;
 
 	    public Patient(String name, int age, String illness) {

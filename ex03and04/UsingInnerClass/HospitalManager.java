@@ -25,6 +25,10 @@ public class HospitalManager {
 		pList.deletePatient("Simon");
 		pList.printListAndCount(pList);
 
+		System.out.println("Try to delete a non-existent patient: Sharon");
+		pList.deletePatient("Sharon");
+		pList.printListAndCount(pList);
+
 		System.out.println("Delete 1st patient: John");
 		pList.deletePatient("John");
 		pList.printListAndCount(pList);
